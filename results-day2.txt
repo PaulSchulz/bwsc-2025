@@ -1,0 +1,36 @@
+  Pos    Num  Name            Car                 Dist (km)    Speed (km/h)    Avg Speed (km/h)  Class       Competing
+-----  -----  --------------  ----------------  -----------  --------------  ------------------  ----------  -----------
+    1      8  Innoptus        INFINITE APOLLO        1486.1            -0.1             92.8812  Challenger  True
+    2      3  Brunel          Nuna 13                1485.1              -0             92.8193  Challenger  True
+    3     21  Twente          RED Discover           1472.4               0             92.0228  Challenger  True
+    4      7  Sonnenwagen     COVESTRO ÆTHON         1398.4             0.1             87.4013  Challenger  True
+    5      2  Michigan        Michigan 2025          1367.7               0             85.4798  Challenger  True
+    6     10  Tokai           Tokai Challenger       1358.2             0.1             84.8901  Challenger  True
+    7     46  JUST            Sune                   1345.9               0             84.1193  Challenger  True
+    8     15  Western Sydney  Unlimited 6.0          1342.6               0             83.9135  Challenger  True
+    9     48  Neumann         NMS-1                  1318.3               0             82.3948  Challenger  True
+   10      6  Top Dutch       Green IV               1298.8            -0.1             81.1741  Challenger  True
+   11     92  Eclipse         Eclipse 12             1278.2             0.1             79.8875  Challenger  True
+   12     85  aCentauri       Silvretta                1215             0.1               75.94  Challenger  True
+   13     51  Chalmers        Arvaker                1169.9              -0             70.9051  Challenger  True
+   14     66  Solaride        Solaride 3               1136             1.6             68.8509  Cruiser     True
+   15     25  VTC             Sophie 8x              1100.5               0             66.6949  Cruiser     True
+   16     61  Wakayama        Yata                   1073.9            -0.1             65.0837  Challenger  True
+   17     99  Solis           EV4-B                    1055               0             63.9407  Challenger  True
+   18     78  Osaka           Scewera                1046.5               0             63.4217  Challenger  True
+   19     88  Kogakuin        Cygnus                 1046.4            -0.1              63.419  Challenger  True
+   20     59  Onda Solare     Emilia 5                986.8               0             59.8083  Cruiser     True
+   21     67  DUST            Dust                    985.2            -0.1             57.9538  Cruiser     True
+   22     32  TUfast          lux025                  985.2            -0.1             58.0991  Challenger  False
+   23     95  Apollo          Apollo IX plus          985.2            -0.2             57.9515  Cruiser     True
+   24     42  SASVA           Sun Sprite              956.2           104.7             56.2463  Challenger  False
+   25     23  Halmstad        H6                      938.9            86.8             55.2322  Challenger  False
+   26      9  AUSRT           Lumen III               925.1            88.6               54.42  Challenger  False
+   27     82  SNU             CHA                     913.8            -0.1              53.751  Challenger  True
+   28     11  Sunswift        SUNSWIFT 7              891.9            -0.1             52.4853  Cruiser     True
+   29     38  Iron Lions      Aurora                  858.4           101.1              50.492  Challenger  False
+   30     24  Archimede       AC001                     825            -0.1              48.531  Cruiser     False
+   31     35  Minnesota       Gaia                    765.4             0.3             45.0247  Cruiser     True
+   32     41  ANU             SC4                     738.7              -0             44.1418  Challenger  True
+   33     57  SNU SOLO        Dokkaebi 2              632.3             0.8             37.1967  Challenger  True
+   34     28  AgniRath        Aagneya                 576.4            18.3              32.937  Challenger  False
