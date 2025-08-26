@@ -111,17 +111,20 @@ def output_table(data):
     """Convert telemetry data to data file for saving."""
     teams = []
     for entry in data["items"]:
-
         distance = round(entry.get("distance", 0),1)
         cp_distances = control_point_distances(control_points)
-
+        speed = round(entry.get("speed", 0),1)
+        if speed < 5.0:
+            speed = "----"
+        else:
+            speed = f"{speed:.1f}"
         if entry.get("competing") == True:
             teams.append({
-                "Num": entry.get("teamnum"),
-                "Name": entry.get("shortname"),
+                "N": entry.get("teamnum"),
+                "Team": entry.get("shortname"),
                 "Car": entry.get("car"),
                 "Dist": distance,
-                "Speed": f"{entry.get("speed", 0):.1f}",
+                "Spd": speed,
                 # "Avg Speed": f"{entry.get("avg_speed", 0):1f}",
                 "Class": entry.get("class"),
                 # "Competing": entry.get("competing"),
@@ -132,7 +135,15 @@ def output_table(data):
     # Sort by distance to calculate race position
     df = pd.DataFrame(teams)
     df = df.sort_values("Dist", ascending=False).reset_index(drop=True)
-    df.insert(0, "Pos", df.index + 1)
+    df.insert(0, "P", df.index + 1)
+
+    leader_distance = df["Dist"].iloc[0]
+    df.insert(5,"Gap",0.0)
+    df["Gap"] = leader_distance - df["Dist"]
+
+    # Fix up some formatting in post-processing
+    #df["Dist"] = df["Dist"].map(lambda x: x * 1.0)
+    #df["Dist"] = df["Dist"].map(lambda x: f"{x:.1f}")
 
     # Use tabulate for pretty table output
     rows = df.values.tolist()
@@ -147,11 +158,15 @@ def output_table(data):
                       "right",
                       "left",
                       "left",
-                      # "right",
                       "right",
+                      "right",
+                      "right",
+                      #"right",
                       # "left",
                       "left",
-                      "left")
+                      "left",
+                      "left"),
+            floatfmt=".1f",
         )
     )
 
