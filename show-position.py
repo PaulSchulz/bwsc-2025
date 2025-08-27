@@ -6,20 +6,20 @@ from tabulate import tabulate
 URL = "https://telemetry.worldsolarchallenge.org/wscearth/api/positions"
 
 control_points = [
-    {"distance": 0.0,    "name": "Darwin"},
-    {"distance": 192.5,  "name": "Emerald Springs"},
-    {"distance": 321.9,  "name": "Katherine"},
-    {"distance": 632.1,  "name": "Dunmarra"},
-    {"distance": 986.8,  "name": "Tennant Creek"},
-    {"distance": 1209.8, "name": "Barrow Creek"},
-    {"distance": 1493.5, "name": "Alice Springs"},
-    {"distance": 1691.7, "name": "Erlunda"},
-    {"distance": 2178.4, "name": "Coober Pedy"},
-    {"distance": 2431.6, "name": "Glendambo"},
-    {"distance": 2717.6, "name": "Port Augusta"},
-    {"distance": 3000.1, "name": "Adelaide Urban Area"},
-    {"distance": 3024.5, "name": "Marshalling Area"},
-    {"distance": 3027.4, "name": "Finish Line"},
+    {"distance": 0.0,    "id": "DAR", "type": "START",   "name": "Darwin"},
+    {"distance": 192.5,  "id": "EMS", "type": "CONTROL", "name": "Emerald Springs"},
+    {"distance": 321.9,  "id": "KAT", "type": "CONTROL", "name": "Katherine"},
+    {"distance": 632.1,  "id": "DUN", "type": "CONTROL", "name": "Dunmarra"},
+    {"distance": 986.8,  "id": "TEN", "type": "CONTROL", "name": "Tennant Creek"},
+    {"distance": 1209.8, "id": "BAR", "type": "CONTROL", "name": "Barrow Creek"},
+    {"distance": 1493.5, "id": "ALI", "type": "CONTROL", "name": "Alice Springs"},
+    {"distance": 1691.7, "id": "ERL", "type": "CONTROL", "name": "Erlunda"},
+    {"distance": 2178.4, "id": "COO", "type": "CONTROL", "name": "Coober Pedy"},
+    {"distance": 2431.6, "id": "GLE", "type": "CONTROL", "name": "Glendambo"},
+    {"distance": 2717.6, "id": "PTA", "type": "CONTROL", "name": "Port Augusta"},
+    {"distance": 3000.1, "id": "AUA", "type": "END",     "name": "Adelaide Urban Area"},
+    {"distance": 3024.5, "id": "MAR", "type": "RALLY",   "name": "Marshalling Area"},
+    {"distance": 3027.4, "id": "ADL", "type": "FINISH",  "name": "Finish Line"},
   ]
 
 def fetch_positions():
@@ -73,14 +73,27 @@ def control_point_progress(team_distance, cp_distances):
     cp_distances: list of distances to each control point (cumulative)
     """
     total = len(cp_distances)
-    bar = "[X]"
+    mark = "X"
+    bar = "["+mark+"]"
     for i in range(1, total):
         if cp_distances[i] <= team_distance:
-            bar = bar + "===[X]"
+            bar = bar + "=="
+            mark = "X"
         elif cp_distances[i-1] <= team_distance and team_distance <= cp_distances[i]:
-            bar = bar + "=>-[ ]"
+            bar = bar + "=>"
+            mark = " "
         else:
-            bar = bar + "---[ ]"
+            bar = bar + "--"
+            mark = " "
+
+        if control_points[i]["type"] == "CONTROL":
+            bar = bar + "["+mark+"]"
+        elif control_points[i]["type"] == "END":
+            bar = bar + "["+mark+"]"
+        elif control_points[i]["type"] == "FINISH":
+            bar = bar + "("+mark+")"
+        else:
+            bar = bar + "("+mark+")"
     return bar
 
 
@@ -148,6 +161,12 @@ def output_table(data):
     # Use tabulate for pretty table output
     rows = df.values.tolist()
     headers = df.columns.tolist()
+
+    control_point_ids = ""
+    for i in range(0,len(control_points)):
+        control_point_ids = control_point_ids + "  " + control_points[i]["id"]
+
+    print(" " * 76 + control_point_ids)
 
     print(
         tabulate(
